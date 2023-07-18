@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "ES_gRPC.UnitTests.Grpc.Protos";
+
+package Student;
+
+service Student{
+  rpc Create (CreateRequest) returns (StudentResponse);
+  rpc Update (UpdateStudentRequest) returns (StudentResponse);
+}
+
+message CreateRequest {
+  string name = 1;
+  string email = 2;
+  string PhoneNumber = 3;
+}
+
+message UpdateStudentRequest {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string PhoneNumber = 4;
+}
+
+message StudentResponse {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string PhoneNumber = 4;
+}
