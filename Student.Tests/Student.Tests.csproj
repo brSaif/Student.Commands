@@ -36,7 +36,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ESgRPC.Commands\ESgRPC.Commands.csproj" />
+      <ProjectReference Include="..\Student.Commands\Student.Commands.csproj" />
     </ItemGroup>
 
     <ItemGroup>

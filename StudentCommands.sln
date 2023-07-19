@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{29059F87-3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.Tests", "Student.Tests\Student.Tests.csproj", "{D8647850-6742-4893-88F7-8E10A09E0A49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESgRPC.Commands", "ESgRPC.Commands\ESgRPC.Commands.csproj", "{E39AEE3C-F8B5-4498-8D0F-446F8D50463B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.Commands", "Student.Commands\Student.Commands.csproj", "{E39AEE3C-F8B5-4498-8D0F-446F8D50463B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.Tests.Live", "Student.Tests.Live\Student.Tests.Live.csproj", "{7113DB6C-E221-4F50-8A19-A50EB80D98DE}"
 EndProject
