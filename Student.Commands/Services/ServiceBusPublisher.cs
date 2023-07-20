@@ -54,7 +54,7 @@ public class ServiceBusPublisher : IServiceBusPublisher
                 
                 var messages = context.OutboxMessages
                     .Include(e => e.Event)
-                    .ToList();// add include()
+                    .ToList();
 
                 PublishAndRemoveMessages(messages, context).GetAwaiter().GetResult();
             }

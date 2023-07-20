@@ -47,9 +47,9 @@ public class CreateStudentHandler : IRequestHandler<CreateStudentRequest, Studen
                     cancellationToken
                     );
         }
-
+    
         await _context.CommitNewEventsAsync(student);
-
+    
         return student;
     }
 }

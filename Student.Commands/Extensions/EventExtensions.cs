@@ -1,9 +1,14 @@
-﻿using gPPCOnHttp3Server;
+﻿using Google.Protobuf.WellKnownTypes;
+using gPPCOnHttp3Server;
 using gRPCOnHttp3.CreateStudent;
 using gRPCOnHttp3.Data;
 using gRPCOnHttp3.Domain;
 using gRPCOnHttp3.Domain.Common;
+using gRPCOnHttp3.GetEvents;
 using gRPCOnHttp3.UpdateStudent;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using StudentCommands.EventHistory;
 using UpdateStudentRequest = gRPCOnHttp3.UpdateStudent.UpdateStudentRequest;
 
 namespace gRPCOnHttp3.Extensions;
@@ -33,4 +38,19 @@ public static class EventExtensions
 
     public static IEnumerable<OutboxMessage> ToOutboxMessages(this IEnumerable<Event> events)
         => events.Select(e => new OutboxMessage(e));
+
+    public static Response ToGetEventsResponse(this List<Event> events)
+        => new ()
+        {
+            Events = { events.Select(e => new EventMessage()
+                {
+                  AggregateId  = e.AggregateId.ToString(),
+                  Sequence = e.Sequence,
+                  Data = JsonConvert.SerializeObject(((dynamic)e).Data, new StringEnumConverter()),
+                  DateTime = Timestamp.FromDateTime(DateTime.SpecifyKind(e.DateTime, DateTimeKind.Utc)),
+                  Type = e.Type.ToString(),
+                  Version = e.Version
+                }) 
+            }
+        };
 }

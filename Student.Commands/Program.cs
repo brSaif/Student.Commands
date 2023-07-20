@@ -8,6 +8,7 @@ using gRPCOnHttp3.Services;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using StudentCommands.EventHistory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,7 @@ var app = builder.Build();
 
 app.MapGrpcService<StudentService>();
 app.MapGrpcService<gRPCOnHttp3.Services.DemoEvents>();
+app.MapGrpcService<EventHistoryService>();
 
 app.MapGet("/", () => "Hello World!");
 
