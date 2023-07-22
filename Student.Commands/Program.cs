@@ -8,6 +8,7 @@ using gRPCOnHttp3.Services;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Serilog;
 using StudentCommands.EventHistory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,12 @@ builder.WebHost.ConfigureKestrel((ctx, opt) =>
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
         listenOptions.UseHttps();
     });
+});
+
+
+builder.Host.UseSerilog((ctx, cfg) =>
+{
+    cfg.Build(ctx.Configuration);
 });
 
 builder.Services.AddGrpc();
@@ -52,7 +59,7 @@ builder.Services.AddSingleton<IServiceBusPublisher, ServiceBusPublisher>();
 
 // builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddGrpcFluentValidationValidators();
+builder.Services.AddGrpcWithValidation();
 // builder.Services.AddValidatorsFromAssemblyContaining<gRPCOnHttp3.Program>();
 
 var app = builder.Build();

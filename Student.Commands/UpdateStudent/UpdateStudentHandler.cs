@@ -32,7 +32,7 @@ public class UpdateStudentHandler : IRequestHandler<UpdateStudentRequest, Studen
             ))
         {
             throw new RpcException(
-                new Status(StatusCode.AlreadyExists, "The name your trying to update to is taken, try another."));
+                new Status(StatusCode.AlreadyExists, Phrases.StudentNameAlreadyTaken));
         }
         
         var events = await _context.EventStore.Where(
@@ -44,7 +44,7 @@ public class UpdateStudentHandler : IRequestHandler<UpdateStudentRequest, Studen
             throw new RpcException(
                 new Status(
                     StatusCode.NotFound, 
-                    $"No student aggregate with the Id: '{request.StudentId}' was found.")
+                    string.Format(Phrases.NoStudentWasFoundWithTheGivenId, request.StudentId))
                 );
 
         var student = Student.LoadHistoryFromEvents(events);

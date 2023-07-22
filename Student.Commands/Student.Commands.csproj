@@ -24,6 +24,10 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
       <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="Serilog" Version="3.0.1" />
+      <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+      <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
+      <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="Protos/Student.proto" GrpcServices="Server">
@@ -39,5 +43,19 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Data\Migrations" />
+      <Folder Include="Grpc" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Update="Phrases.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Phrases.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Phrases.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Phrases.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>
